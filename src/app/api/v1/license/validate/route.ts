@@ -6,6 +6,12 @@ import { signEntitlementToken, PLAN_DEFAULT_ENTITLEMENTS, PlanTier } from "@/lib
 
 const SECRET = process.env.LICENSE_HMAC_SECRET || "technext_avro_license_hmac_master_secret_2026";
 
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Requested-With",
+};
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
@@ -15,7 +21,7 @@ export async function POST(req: NextRequest) {
     if (!licenseKey) {
       return NextResponse.json(
         { success: false, error: "License key is required." },
-        { status: 400 }
+        { status: 400, headers: corsHeaders }
       );
     }
 
@@ -36,7 +42,7 @@ export async function POST(req: NextRequest) {
           error: "License key not recognized by TECHNEXT licensing authority.",
           code: "LICENSE_NOT_FOUND",
         },
-        { status: 404 }
+        { status: 404, headers: corsHeaders }
       );
     }
 
@@ -60,7 +66,7 @@ export async function POST(req: NextRequest) {
           error: `License is currently ${license.status}. Please contact info.technexttech@gmail.com.`,
           code: `LICENSE_${license.status}`,
         },
-        { status: 403 }
+        { status: 403, headers: corsHeaders }
       );
     }
 
@@ -86,7 +92,7 @@ export async function POST(req: NextRequest) {
           code: "LICENSE_EXPIRED",
           expiresAt: license.expiresAt,
         },
-        { status: 403 }
+        { status: 403, headers: corsHeaders }
       );
     }
 
@@ -123,7 +129,7 @@ export async function POST(req: NextRequest) {
             error: `License is bound to domain '${license.boundDomain}', but request originated from '${domain}'.`,
             code: "DOMAIN_MISMATCH",
           },
-          { status: 403 }
+          { status: 403, headers: corsHeaders }
         );
       }
     }
@@ -193,23 +199,29 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    return NextResponse.json({
-      success: true,
-      valid: true,
-      plan: planTier,
-      status: "ACTIVE",
-      boundDomain: license.boundDomain,
-      expiresAt: license.expiresAt,
-      entitlements,
-      token,
-      broadcasts: activeBroadcasts,
-      message: "License validated successfully by TECHNEXT Licensing Engine.",
-    });
+    return NextResponse.json(
+      {
+        success: true,
+        valid: true,
+        plan: planTier,
+        status: "ACTIVE",
+        boundDomain: license.boundDomain,
+        expiresAt: license.expiresAt,
+        entitlements,
+        token,
+        broadcasts: activeBroadcasts,
+        message: "License validated successfully by TECHNEXT Licensing Engine.",
+      },
+      { headers: corsHeaders }
+    );
   } catch (error: any) {
     console.error("License validation error:", error);
     return NextResponse.json(
-      { success: false, error: "Internal licensing error." },
-      { status: 500 }
+      { success: false, error: error?.message || "Internal licensing error." },
+      {
+        status: 500,
+        headers: corsHeaders,
+      }
     );
   }
 }
@@ -217,9 +229,9 @@ export async function POST(req: NextRequest) {
 export async function OPTIONS() {
   return new NextResponse(null, {
     status: 204,
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "POST, OPTIONS",
+    headers: corsHeaders,
+  });
+}
       "Access-Control-Allow-Headers": "Content-Type, Authorization",
     },
   });
