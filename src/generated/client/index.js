@@ -327,7 +327,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "e:\\WEBITE WORK\\AVRO\\apps\\central\\src\\generated\\client",
+      "value": "e:\\WEBITE WORK\\AVRO\\dist\\avrocentral\\src\\generated\\client",
       "fromEnvVar": null
     },
     "config": {
@@ -353,7 +353,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "e:\\WEBITE WORK\\AVRO\\apps\\central\\prisma\\schema.prisma",
+    "sourceFilePath": "e:\\WEBITE WORK\\AVRO\\dist\\avrocentral\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -367,6 +367,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {

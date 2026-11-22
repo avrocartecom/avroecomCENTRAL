@@ -8,7 +8,7 @@ declare global {
 }
 
 const SUPABASE_DEFAULT_CENTRAL_URL =
-  "postgres://postgres.aydgnokektxslpaukbou:5ORmfa7GDe1wQJ8t@aws-1-us-east-1.pooler.supabase.com:6543/postgres?sslmode=require&pgbouncer=true&schema=central";
+  "postgres://postgres.ojxkbwxbdtqackefxcbt:W2LM4X7WhRXu8Ir9@aws-0-us-east-1.pooler.supabase.com:6543/postgres?sslmode=require&pgbouncer=true";
 
 function loadEnvFiles() {
   const candidatePaths = [
@@ -85,21 +85,17 @@ export function getCentralDbUrl(): string {
 
   let dbUrl = (bestKey ? env[bestKey]?.trim() : undefined) || SUPABASE_DEFAULT_CENTRAL_URL;
 
-  // Enforce schema=central
-  if (
-    dbUrl.startsWith("postgres://") ||
-    dbUrl.startsWith("postgresql://") ||
-    dbUrl.startsWith("prisma://")
-  ) {
+  // If custom schema is specified in env (e.g. DATABASE_SCHEMA=central)
+  if (process.env.DATABASE_SCHEMA && (dbUrl.startsWith("postgres://") || dbUrl.startsWith("postgresql://") || dbUrl.startsWith("prisma://"))) {
     try {
       const urlObj = new URL(dbUrl);
       if (!urlObj.searchParams.has("schema")) {
-        urlObj.searchParams.set("schema", "central");
+        urlObj.searchParams.set("schema", process.env.DATABASE_SCHEMA);
         dbUrl = urlObj.toString();
       }
     } catch {
       if (!dbUrl.includes("schema=")) {
-        dbUrl += (dbUrl.includes("?") ? "&" : "?") + "schema=central";
+        dbUrl += (dbUrl.includes("?") ? "&" : "?") + `schema=${process.env.DATABASE_SCHEMA}`;
       }
     }
   }

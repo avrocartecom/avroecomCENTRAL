@@ -128,7 +128,7 @@ if (!directEnvVar) directEnvVar = "DIRECT_URL";
 console.log(`[prepare-prisma] Central bound DB URL: ${urlEnvVar} (${dbUrl ? "found" : "empty"})`);
 console.log(`[prepare-prisma] Central bound Direct URL: ${directEnvVar} (${directUrl ? "found" : "empty"})`);
 
-// 3. Configure PostgreSQL in schema.prisma and enforce schema=central
+// 3. Configure PostgreSQL in schema.prisma
 if (
   dbUrl.startsWith("postgres://") ||
   dbUrl.startsWith("postgresql://") ||
@@ -138,16 +138,18 @@ if (
   console.log(`[prepare-prisma] Detected PostgreSQL (Supabase/Postgres). Binding url = env("${urlEnvVar}")`);
   schema = schema.replace(/provider\s*=\s*"sqlite"/g, 'provider = "postgresql"');
 
-  if (dbUrl && !dbUrl.includes("schema=")) {
-    dbUrl += (dbUrl.includes("?") ? "&" : "?") + "schema=central";
-    process.env[urlEnvVar] = dbUrl;
-    process.env.DATABASE_URL = dbUrl;
-  }
+  if (process.env.DATABASE_SCHEMA) {
+    if (dbUrl && !dbUrl.includes("schema=")) {
+      dbUrl += (dbUrl.includes("?") ? "&" : "?") + `schema=${process.env.DATABASE_SCHEMA}`;
+      process.env[urlEnvVar] = dbUrl;
+      process.env.DATABASE_URL = dbUrl;
+    }
 
-  if (directUrl && !directUrl.includes("schema=")) {
-    directUrl += (directUrl.includes("?") ? "&" : "?") + "schema=central";
-    process.env[directEnvVar] = directUrl;
-    process.env.DIRECT_URL = directUrl;
+    if (directUrl && !directUrl.includes("schema=")) {
+      directUrl += (directUrl.includes("?") ? "&" : "?") + `schema=${process.env.DATABASE_SCHEMA}`;
+      process.env[directEnvVar] = directUrl;
+      process.env.DIRECT_URL = directUrl;
+    }
   }
 
   if (urlEnvVar !== "DATABASE_URL") {
