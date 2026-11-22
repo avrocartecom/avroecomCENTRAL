@@ -68,6 +68,281 @@ export interface AvroThemeDefinition {
 }
 
 export const AVRO_THEMES: AvroThemeDefinition[] = [
+  // 0. AITHRITHI ROYALE MAROON — Haute Couture & Minimal Luxury (aithirithi.in)
+  {
+    id: "aithrithi-maroon",
+    code: "AITHRITHI_MAROON",
+    name: "Aithrithi Royale",
+    industry: "Luxury Couture & Artisanal Living",
+    referenceUrl: "https://aithirithi.in",
+    referenceDisplay: "aithirithi.in",
+    tagline: "Regal Maroon Couture · Understated Minimal Luxury",
+    description: "Designed exclusively for aithirithi.in. A refined harmony of deep imperial bordeaux maroon, warm champagne gold filigree, pure alabaster canvas, crisp editorial serif typography, and ultra-fluid mobile ergonomics.",
+    isIncludedInFree: true,
+    palette: {
+      primary: "#58111A",        // Imperial Velvet Maroon
+      accent: "#C5A880",         // Warm Champagne Gold
+      background: "#FAF7F5",     // Pure Warm Alabaster Canvas
+      cardBg: "#FFFFFF",         // Crisp Pristine White
+      text: "#1C1314",           // Deep Crimson-Espresso Typography
+      textMuted: "#7B6E70",      // Muted Warm Stone
+      border: "#EFE7E4",         // Delicate Whisper Border
+      badgeBg: "#F6ECEE",        // Soft Rose-Maroon Wash
+      badgeText: "#58111A",      // Imperial Maroon
+      headerBg: "#FAF7F5",       // Consistent with canvas
+      footerBg: "#36080F",       // Midnight Imperial Bordeaux
+      accentGlow: "rgba(88, 17, 26, 0.08)",
+    },
+    typography: {
+      fontFamily: "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+      headingClass: "font-serif tracking-tight font-normal",
+      bodyClass: "font-sans",
+      buttonRadius: "rounded-full",
+      badgeRadius: "rounded-full",
+    },
+    hero: {
+      badge: "AITHIRITHI.IN · HAUTE COUTURE & ARTISANAL LUXURY",
+      headline: "The Art of Modern Grandeur in",
+      headlineHighlight: "Imperial Maroon",
+      subheadline: "Handcrafted with devotion. Luxurious handloom mulmul, pure tussar silks, and timeless contemporary silhouettes tailored for the discerning modern connoisseur.",
+      ctaPrimary: "Explore Collection",
+      ctaSecondary: "View Lookbook",
+      imageUrl: "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1200&q=85",
+      style: "editorial-split",
+    },
+    announcementBar: {
+      text: "✦ Aithrithi Festive Royale Live · Complimentary Express Shipping Worldwide · 100% Authentic Handcrafted Heritage ✦",
+      bg: "#58111A",
+      textColor: "#FAF7F5",
+    },
+    trustBadges: [
+      {
+        title: "Artisanal Heritage",
+        subtitle: "Handcrafted by generational master artisans",
+        icon: "award",
+      },
+      {
+        title: "Pure Handloom Luxury",
+        subtitle: "Ethically spun mulmul, tussar silks & organic dyes",
+        icon: "heart",
+      },
+      {
+        title: "Complimentary Express Delivery",
+        subtitle: "Fast doorstep delivery with luxury gift unboxing",
+        icon: "truck",
+      },
+      {
+        title: "Effortless 7-Day Exchange",
+        subtitle: "Doorstep pickup supported by our style concierge",
+        icon: "refresh",
+      },
+    ],
+    sampleCategories: [
+      {
+        name: "Imperial Co-Ords",
+        slug: "co-ords",
+        itemCount: "28 styles",
+        imageUrl: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80",
+      },
+      {
+        name: "Handcrafted Kurtas",
+        slug: "kurtas",
+        itemCount: "34 styles",
+        imageUrl: "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=600&q=80",
+      },
+      {
+        name: "Heritage Sarees",
+        slug: "sarees",
+        itemCount: "22 styles",
+        imageUrl: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=600&q=80",
+      },
+      {
+        name: "Bespoke Outerwear",
+        slug: "outerwear",
+        itemCount: "16 styles",
+        imageUrl: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=600&q=80",
+      },
+    ],
+    sampleProducts: [
+      {
+        title: "Bordeaux Velvet Tiered Co-Ord Set",
+        slug: "bordeaux-velvet-tiered-coord",
+        price: 3890,
+        compareAtPrice: 4990,
+        badge: "Bestseller",
+        category: "Co-Ords",
+        rating: 4.9,
+        imageUrl: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=85",
+      },
+      {
+        title: "Imperial Maroon Handblock Silk Anarkali",
+        slug: "imperial-maroon-handblock-anarkali",
+        price: 4450,
+        compareAtPrice: 5600,
+        badge: "Exclusive",
+        category: "Kurtas",
+        rating: 5.0,
+        imageUrl: "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=800&q=85",
+      },
+      {
+        title: "Champagne Gilded Tussar Kurta Set",
+        slug: "champagne-gilded-tussar-kurta",
+        price: 3250,
+        badge: "New Arrival",
+        category: "Kurtas",
+        rating: 4.8,
+        imageUrl: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=85",
+      },
+      {
+        title: "Midnight Bordeaux Structured Linen Trench",
+        slug: "midnight-bordeaux-structured-trench",
+        price: 5190,
+        compareAtPrice: 6800,
+        badge: "Limited Edition",
+        category: "Outerwear",
+        rating: 4.9,
+        imageUrl: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=800&q=85",
+      },
+    ],
+  },
+
+  // 1. NOVA LOFT — Conscious Street Couture & Artisanal Cotton (Inspired by novaloft.in)
+  {
+    id: "couture-nova-loft",
+    code: "COUTURE_NOVA_LOFT",
+    name: "Nova Loft",
+    industry: "Conscious Street Couture & Handloom",
+    referenceUrl: "https://www.novaloft.in/",
+    referenceDisplay: "novaloft.in",
+    tagline: "Consciously Crafted Street Couture & Earthy Handblock Cotton",
+    description: "Inspired by Kochi's conscious streetwear boutique Nova Loft. Soft ecru linen canvas, deep espresso charcoal typography, terracotta and indigo accents, artisanal handblock badges, and relaxed editorial aesthetics without synthetic AI styling.",
+    isIncludedInFree: true,
+    palette: {
+      primary: "#1C1917",
+      accent: "#9A3412",
+      background: "#FAF8F5",
+      cardBg: "#FFFFFF",
+      text: "#1C1917",
+      textMuted: "#78716C",
+      border: "#E7E5E4",
+      badgeBg: "#F5EBE1",
+      badgeText: "#7C2D12",
+      headerBg: "#FAF8F5",
+      footerBg: "#1C1917",
+      accentGlow: "rgba(154, 52, 18, 0.08)",
+    },
+    typography: {
+      fontFamily: "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+      headingClass: "font-serif tracking-tight font-normal",
+      bodyClass: "font-sans",
+      buttonRadius: "rounded-full",
+      badgeRadius: "rounded-full",
+    },
+    hero: {
+      badge: "CONSCIOUSLY CRAFTED · KOCHI BOUTIQUE",
+      headline: "Elevated Street Couture & Handblock Cotton",
+      headlineHighlight: "Consciously Tailored",
+      subheadline: "Thoughtfully designed in Kochi. Pure handblock cotton, mud-resist Dabu prints, and relaxed contemporary silhouettes tailored for effortless day-to-night living.",
+      ctaPrimary: "Explore New Drop",
+      ctaSecondary: "View Lookbook",
+      imageUrl: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1200&q=85",
+      style: "editorial-split",
+    },
+    announcementBar: {
+      text: "✦ Consciously crafted in small batches · Free Pan-India Shipping on orders above ₹1,499 · Authentic Handblock Craft ✦",
+      bg: "#1C1917",
+      textColor: "#FAF8F5",
+    },
+    trustBadges: [
+      {
+        title: "Pure Handblock Cotton",
+        subtitle: "Hand-printed in Jaipur & Bagru using traditional wooden blocks",
+        icon: "award",
+      },
+      {
+        title: "Small-Batch Conscious Craft",
+        subtitle: "Zero mass-production waste; tailored with care in Kochi",
+        icon: "heart",
+      },
+      {
+        title: "Direct Artisan Support",
+        subtitle: "Fair-trade wages empowering generational master weavers",
+        icon: "check",
+      },
+      {
+        title: "Doorstep Exchanges",
+        subtitle: "Hassle-free 7-day exchanges across India",
+        icon: "refresh",
+      },
+    ],
+    sampleCategories: [
+      {
+        name: "Co-Ord Sets",
+        slug: "co-ords",
+        itemCount: "18 styles",
+        imageUrl: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80",
+      },
+      {
+        name: "Handblock Dresses",
+        slug: "dresses",
+        itemCount: "24 styles",
+        imageUrl: "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=600&q=80",
+      },
+      {
+        name: "Alia-Cut Kurtas",
+        slug: "kurtas",
+        itemCount: "14 styles",
+        imageUrl: "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=600&q=80",
+      },
+      {
+        name: "Artisanal Tops",
+        slug: "tops",
+        itemCount: "16 styles",
+        imageUrl: "https://images.unsplash.com/photo-1534126511673-b6899657816a?auto=format&fit=crop&w=600&q=80",
+      },
+    ],
+    sampleProducts: [
+      {
+        title: "Sienna Overlap Collar Handblock Co-Ord Set",
+        slug: "sienna-overlap-co-ord-set",
+        price: 2499,
+        compareAtPrice: 2999,
+        badge: "NEW DROP",
+        category: "Co-Ord Sets",
+        rating: 4.9,
+        imageUrl: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=85",
+      },
+      {
+        title: "Livia Tiered Handblock Cotton Maxi Dress",
+        slug: "livia-tiered-cotton-maxi-dress",
+        price: 2299,
+        compareAtPrice: 2699,
+        badge: "BESTSELLER",
+        category: "Handblock Dresses",
+        rating: 4.9,
+        imageUrl: "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=800&q=85",
+      },
+      {
+        title: "Miyabi Dabu Mud-Resist Indigo Alia-Cut Kurta",
+        slug: "miyabi-dabu-indigo-alia-cut-kurta",
+        price: 1899,
+        compareAtPrice: 2299,
+        badge: "ARTISANAL",
+        category: "Alia-Cut Kurtas",
+        rating: 4.8,
+        imageUrl: "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=800&q=85",
+      },
+      {
+        title: "Juana Pintuck Balloon-Sleeve Cotton Daywear Top",
+        slug: "juana-pintuck-balloon-sleeve-top",
+        price: 1499,
+        badge: "PURE COTTON",
+        category: "Artisanal Tops",
+        rating: 4.9,
+        imageUrl: "https://images.unsplash.com/photo-1534126511673-b6899657816a?auto=format&fit=crop&w=800&q=85",
+      },
+    ],
+  },
   // 1. FASHION - NOIR
   {
     id: "fashion-noir",
@@ -905,7 +1180,7 @@ export const AVRO_THEMES: AvroThemeDefinition[] = [
       badgeRadius: "rounded-full",
     },
     hero: {
-      badge: "AVRO STANDARD COMMERCE ENGINE 2026",
+      badge: "AVRO CURATED COLLECTIONS 2026",
       headline: "Find your next",
       headlineHighlight: "favourite.",
       subheadline: "Shop top-rated electronics, minimalist apparel, home furnishings, and daily curated finds — all with verified authenticity and fast delivery.",
@@ -940,9 +1215,90 @@ export const AVRO_THEMES: AvroThemeDefinition[] = [
   },
 ];
 
-export function getThemeById(idOrCode: string): AvroThemeDefinition {
-  const found = AVRO_THEMES.find(
-    (t) => t.id === idOrCode || t.code === idOrCode || t.id.toLowerCase() === idOrCode.toLowerCase()
+export function getThemeById(idOrCode: string, themeSetting?: any): AvroThemeDefinition {
+  return resolveStoreTheme(idOrCode, themeSetting);
+}
+
+export function extractCustomThemes(themeSetting?: any): AvroThemeDefinition[] {
+  if (!themeSetting) return [];
+  let list: any[] = [];
+  try {
+    if (Array.isArray(themeSetting.customThemes)) {
+      list = themeSetting.customThemes;
+    } else if (themeSetting.customThemesJson) {
+      list = JSON.parse(themeSetting.customThemesJson);
+    } else if (themeSetting.socialLinksJson) {
+      const parsed =
+        typeof themeSetting.socialLinksJson === "string"
+          ? JSON.parse(themeSetting.socialLinksJson)
+          : themeSetting.socialLinksJson;
+      if (Array.isArray(parsed?.customThemes)) {
+        list = parsed.customThemes;
+      }
+    }
+  } catch (e) {
+    list = [];
+  }
+  return Array.isArray(list) ? list : [];
+}
+
+export function getAllThemes(themeSetting?: any): AvroThemeDefinition[] {
+  const custom = extractCustomThemes(themeSetting);
+  return [...custom, ...AVRO_THEMES];
+}
+
+export function resolveStoreTheme(
+  idOrCode?: string | null,
+  themeSetting?: any
+): AvroThemeDefinition {
+  const all = getAllThemes(themeSetting);
+  const target = String(idOrCode || themeSetting?.activeTheme || "AVRO_SIGNATURE").trim();
+
+  const found = all.find(
+    (t) =>
+      t.code === target ||
+      t.id === target ||
+      t.code.toLowerCase() === target.toLowerCase() ||
+      t.id.toLowerCase() === target.toLowerCase() ||
+      (target.toUpperCase() === "TALIM_DEFAULT" && t.code === "AVRO_SIGNATURE")
   );
-  return found || AVRO_THEMES[12]; // Fallback to AVRO Signature
+
+  return found || AVRO_THEMES[0]; // Fallback to Aithrithi Royale Maroon
+}
+
+export function createDefaultCustomTheme(
+  name?: string,
+  basePresetCode?: string
+): AvroThemeDefinition {
+  const base =
+    AVRO_THEMES.find((t) => t.code === basePresetCode || t.id === basePresetCode) ||
+    AVRO_THEMES[12]; // AVRO Signature
+
+  const timestamp = Date.now();
+  const id = `custom-${timestamp}`;
+  const code = `CUSTOM_${timestamp}`;
+  const themeName = name?.trim() || "My Branded Theme";
+
+  return {
+    id,
+    code,
+    name: themeName,
+    industry: base.industry || "Custom Bespoke Store",
+    referenceUrl: "#",
+    referenceDisplay: "Custom Merchant Theme",
+    tagline: `Exclusive branded design for ${themeName}`,
+    description: `A custom-crafted merchant theme with bespoke typography, curated brand palettes, customized hero banners, and tailor-made layout styling.`,
+    isIncludedInFree: false,
+    palette: { ...base.palette },
+    typography: { ...base.typography },
+    hero: {
+      ...base.hero,
+      headline: `Welcome to ${themeName}`,
+      subheadline: `Discover handcrafted essentials, curated new drops, and signature collections.`,
+    },
+    announcementBar: { ...base.announcementBar },
+    trustBadges: [...base.trustBadges],
+    sampleCategories: [...base.sampleCategories],
+    sampleProducts: [...base.sampleProducts],
+  };
 }
