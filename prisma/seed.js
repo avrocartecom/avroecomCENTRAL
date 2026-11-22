@@ -146,26 +146,7 @@ async function main() {
     }
   }
 
-  // 4. Promotions
-  await prisma.promotion.upsert({
-    where: { code: "TECHNEXT10" },
-    update: {},
-    create: {
-      code: "TECHNEXT10",
-      discountPercent: 10,
-      maxDiscount: 500,
-    },
-  });
-
-  await prisma.promotion.upsert({
-    where: { code: "LAUNCH50" },
-    update: {},
-    create: {
-      code: "LAUNCH50",
-      discountPercent: 50,
-      maxDiscount: 1000,
-    },
-  });
+  // 4. Promotions (Cleaned - ready for custom merchant codes)
 
   // 5. Software Releases
   await prisma.softwareRelease.upsert({
@@ -209,61 +190,67 @@ async function main() {
     });
   }
 
-  // 7. Seed Sample Customers and Subscriptions with Real Licenses
-  const customerPassword = await bcrypt.hash("customer123", 10);
-  const customer1 = await prisma.customer.upsert({
-    where: { email: "rajesh@apexretail.in" },
-    update: {},
+  // 7. Seed Official Aithrithi Storefront Customer & Enterprise Plus License
+  const customerPassword = await bcrypt.hash("Aithrithi@2026", 10);
+  const aithrithiCustomer = await prisma.customer.upsert({
+    where: { email: "info.technexttech@gmail.com" },
+    update: {
+      name: "Aithrithi Storefront",
+      companyName: "Aithrithi Lifestyle & Apparel",
+      phone: "+91 94965 90984",
+      status: "ACTIVE",
+      internalNotes: "Official primary brand storefront operating on AVRO Plus Enterprise tier.",
+    },
     create: {
-      name: "Rajesh Sharma",
-      email: "rajesh@apexretail.in",
-      companyName: "Apex Retail Solutions",
-      phone: "+91 98765 43210",
+      name: "Aithrithi Storefront",
+      email: "info.technexttech@gmail.com",
+      companyName: "Aithrithi Lifestyle & Apparel",
+      phone: "+91 94965 90984",
       passwordHash: customerPassword,
       status: "ACTIVE",
-      internalNotes: "High-potential retail client expanding to 5 offline outlets.",
+      internalNotes: "Official primary brand storefront operating on AVRO Plus Enterprise tier.",
     },
   });
 
-  const growPlan = await prisma.plan.findUnique({ where: { tier: "GROW" } });
-  if (growPlan) {
+  const plusPlan = await prisma.plan.findUnique({ where: { tier: "PLUS" } });
+  if (plusPlan) {
     const existingSub = await prisma.subscription.findFirst({
-      where: { customerId: customer1.id },
+      where: { customerId: aithrithiCustomer.id },
     });
 
     if (!existingSub) {
-      const oneYearLater = new Date();
-      oneYearLater.setFullYear(oneYearLater.getFullYear() + 1);
+      const twoYearsLater = new Date();
+      twoYearsLater.setFullYear(twoYearsLater.getFullYear() + 2);
 
       const sub1 = await prisma.subscription.create({
         data: {
-          customerId: customer1.id,
-          planId: growPlan.id,
-          duration: "YEARLY",
+          customerId: aithrithiCustomer.id,
+          planId: plusPlan.id,
+          duration: "TWO_YEARS",
           status: "ACTIVE",
-          amount: 5750,
+          amount: 11743,
           currency: "INR",
           startDate: new Date(),
-          endDate: oneYearLater,
+          endDate: twoYearsLater,
           hasSetupAssistance: true,
           setupFee: 1499,
           paymentStatus: "PAID",
-          paymentReference: "PAY_RAZOR_92819382",
+          paymentReference: "PAY_OFFICIAL_AITHRITHI_DIRECT",
         },
       });
 
-      // Valid test license key bound to localhost:3001
+      // Official License Key bound to Aithrithi domains
       await prisma.license.create({
         data: {
-          licenseKey: "AVRO-GROW-8F3C7B21A90E-7C32",
-          customerId: customer1.id,
+          licenseKey: "AVRO-PLUS-AITHRITHI-2026-LIVE",
+          customerId: aithrithiCustomer.id,
           subscriptionId: sub1.id,
-          planTier: "GROW",
-          boundDomain: "localhost:3001",
+          planTier: "PLUS",
+          boundDomain: "localhost:3001, aithrithi.vercel.app, *.vercel.app, aithrithisample-web.vercel.app",
           installationUuid: "avro-store-inst-loc-001",
           status: "ACTIVE",
           activatedAt: new Date(),
-          expiresAt: oneYearLater,
+          expiresAt: twoYearsLater,
           lastHeartbeatAt: new Date(),
         },
       });

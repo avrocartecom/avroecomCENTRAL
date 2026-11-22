@@ -95,10 +95,14 @@ export async function POST(req: NextRequest) {
       const cleanBound = license.boundDomain.replace(/https?:\/\//, "").replace(/\/$/, "").toLowerCase();
       const cleanInput = domain.replace(/https?:\/\//, "").replace(/\/$/, "").toLowerCase();
 
-      // Allow matching or localhost variants
+      // Allow exact match, wildcard, comma-separated domains, or local/preview variants
+      const boundList = cleanBound.split(",").map((d) => d.trim());
       const isMatch =
-        cleanBound === cleanInput ||
-        (cleanBound.includes("localhost") && cleanInput.includes("localhost"));
+        cleanBound === "*" ||
+        boundList.includes(cleanInput) ||
+        boundList.some((b) => b === "*" || (b.startsWith("*.") && cleanInput.endsWith(b.slice(1)))) ||
+        (cleanBound.includes("localhost") && cleanInput.includes("localhost")) ||
+        (cleanBound.includes("aithrithi") && cleanInput.includes("aithrithi"));
 
       if (!isMatch) {
         await prisma.licenseValidationLog.create({
